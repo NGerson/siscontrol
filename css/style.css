@@ -1,0 +1,152 @@
+/* --- Background Global com Gradiente Completo --- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    background: linear-gradient(135deg, #02555F 0%, #2C717A 45%, #F8FAFA 100%);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- Centralização Perfeita do Container de Login --- */
+.login-wrapper {
+    width: 100%;
+    max-width: 450px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- Card Estilizado para Combinar com o Gradiente --- */
+/* --- Container de Login Estilizado Premium --- */
+.card.shadow-lg {
+    width: 100%;
+    padding: 28px;
+
+    /* Glass + leve cor puxando para o gradiente */
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border-radius: 18px;
+    border: 1px solid rgba(15, 108, 120, 0.25); /* verde petróleo suave */
+
+    box-shadow: 
+        0 12px 28px rgba(0, 0, 0, 0.25),
+        0 4px 12px rgba(0, 0, 0, 0.10);
+
+    animation: fadeSlide 0.6s ease-out;
+}
+
+/* Títulos mais elegantes */
+h2 {
+    font-weight: 650;
+    font-size: 1.6rem;
+    text-align: center;
+    color: #0F6C78; /* combina com o fundo */
+    margin-bottom: 22px;
+}
+
+/* Labels */
+.form-label {
+    font-weight: 600;
+    color: #3A5560; /* cinza-azul */
+}
+
+/* Inputs */
+.form-control, .form-select {
+    border-radius: 10px;
+    border: 1px solid rgba(255, 1, 1, 0.15);
+    background: rgba(255,255,255,0.85);
+    transition: 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #0F6C78;
+    box-shadow: 0 0 0 0.25rem rgba(15,108,120,0.25);
+}
+
+/* Botão */
+.btn-primary {
+    background: linear-gradient(90deg, #0D6EFD, #0A58CA);
+    border: none;
+    border-radius: 10px;
+    transition: 0.25s ease-in-out;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(13,110,253,0.35);
+}
+
+/* --- Animação moderna de entrada --- */
+@keyframes fadeSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(25px) scale(0.97);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Ajustes de título */
+h2 {
+    font-weight: 600;
+    color: #0d6efd;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Inputs */
+.form-control, .form-select {
+    border-radius: 8px;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Botão */
+.btn-primary {
+    border-radius: 8px;
+    padding: 10px;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Responsividade Mobile --- */
+@media (max-width: 576px) {
+
+    body {
+        align-items: flex-start;
+        padding-top: 40px;
+    }
+
+    .card.shadow-lg {
+        border-radius: 0;
+        box-shadow: none;
+        padding: 30px 20px;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+}
