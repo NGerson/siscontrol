@@ -25,18 +25,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Cadastro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
    <link href="css/style.css" rel="stylesheet">
-   <style>
-        body {
-            /* ATENÇÃO: Mude este caminho para o local real da sua imagem */
-            background-image: url('img/banner2.png'); 
-        }
-   </style>
+
 
 
 
 
 </head>
 <body>
+    <div class="main-banner">
     <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 100%; max-width: 450px;">
         <div class="card-body">
             <h2 class="card-title text-center mb-4 text-primary">📦 Cadastro de Usuário</h2>
@@ -67,6 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </form>
             <p class="mt-3 text-center">Já tem conta? <a href="login.php">Faça Login</a></p>
         </div>
-    </div>
+      </div>
+   </div>
 </body>
 </html>
