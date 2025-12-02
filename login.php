@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['user_role'] = $user['role'];
                 
                 // Redirecionar para o painel de controle
-                header('Location: dashboard.php');
+                 header('Location: painel.php'); 
                 exit;
                 
             } else {
