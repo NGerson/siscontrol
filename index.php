@@ -1,42 +1,47 @@
 <?php
+// ATENÇÃO: Verifique se o db.php no servidor tem as credenciais de produção!
 include 'db.php';
 session_start();
+$message = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash simples
-    $role = $_POST['role'];
+    $name = $_POST['name'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $password = password_hash($_POST['password'] ?? '', PASSWORD_DEFAULT); 
+    $role = $_POST['role'] ?? 'user';
 
-    $stmt = $conn->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $name, $email, $password, $role);
-    if ($stmt->execute()) {
-        $message = "Cadastro realizado! <a href='login.php'>Faça login</a>";
+    // Ocultar a mensagem de erro do servidor em produção, se o db.php falhar
+    if ($conn->connect_error) {
+        $message = "Erro de conexão com o banco de dados. Tente novamente mais tarde.";
     } else {
-        $message = "Erro: " . $conn->error;
+        $stmt = $conn->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $name, $email, $password, $role);
+        
+        if ($stmt->execute()) {
+            $message = "Cadastro realizado com sucesso! <a href='login.php'>Faça login</a>";
+        } else {
+            // Em produção, evite exibir $conn->error por segurança
+            $message = "Erro ao tentar cadastrar. Email já pode estar em uso.";
+        }
+        $stmt->close();
     }
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
+ <html lang="pt-BR"> 
+ <head>
     <meta charset="UTF-8">
     <title>Cadastro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
    <link href="css/style.css" rel="stylesheet">
-
-
-
-
-
-</head>
-<body>
+ </head>
+  <body>
     <div class="main-banner">
     <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 100%; max-width: 450px;">
         <div class="card-body">
             <h2 class="card-title text-center mb-4 text-primary">📦 Cadastro de Usuário</h2>
-            <?php if (isset($message)): ?>
+            <?php if (!empty($message)): ?>
                 <div class="alert alert-info text-center"><?php echo $message; ?></div>
             <?php endif; ?>
             <form method="POST">

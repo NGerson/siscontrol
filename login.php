@@ -1,4 +1,5 @@
 <?php
+// ATENÇÃO: Verifique se o db.php no servidor tem as credenciais de produção!
 include 'db.php';
 session_start();
 $message = '';
@@ -7,32 +8,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
-    // 1. Buscar o usuário pelo email
-    $stmt = $conn->prepare("SELECT id, name, password, role FROM users WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows === 1) {
-        $user = $result->fetch_assoc();
-        
-        // 2. Verificar a senha (usando password_verify, pois a senha foi hasheada no cadastro)
-        if (password_verify($password, $user['password'])) {
-            
-            // 3. Login bem-sucedido: Iniciar e salvar sessão
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_name'] = $user['name'];
-            $_SESSION['user_role'] = $user['role'];
-            
-            // Redirecionar para o painel de controle
-            header('Location: dashboard.php');
-            exit;
-            
-        } else {
-            $message = "Senha incorreta.";
-        }
+    // Ocultar a mensagem de erro do servidor em produção, se o db.php falhar
+    if ($conn->connect_error) {
+        $message = "Erro de conexão com o banco de dados. Tente novamente mais tarde.";
     } else {
-        $message = "Usuário não encontrado.";
+        // 1. Buscar o usuário pelo email
+        $stmt = $conn->prepare("SELECT id, name, password, role FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 1) {
+            $user = $result->fetch_assoc();
+            
+            // 2. Verificar a senha (usando password_verify)
+            if (password_verify($password, $user['password'])) {
+                
+                // 3. Login bem-sucedido: Iniciar e salvar sessão
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['user_name'] = $user['name'];
+                $_SESSION['user_role'] = $user['role'];
+                
+                // Redirecionar para o painel de controle
+                header('Location: dashboard.php');
+                exit;
+                
+            } else {
+                $message = "Senha incorreta.";
+            }
+        } else {
+            $message = "Usuário não encontrado.";
+        }
+        $stmt->close();
     }
 }
 ?>
