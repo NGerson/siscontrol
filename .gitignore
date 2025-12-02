@@ -1,0 +1,2 @@
+# Ignorar o arquivo de conexão do banco de dados para não expor senhas
+db.php
