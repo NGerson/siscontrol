@@ -1,5 +1,5 @@
 <?php
-// ATENÇÃO: Verifique se o db.php no servidor tem as credenciais de produção!
+// Inclui o arquivo de conexão com o Banco de Dados
 include 'db.php';
 session_start();
 $message = '';
@@ -8,9 +8,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
-    // Ocultar a mensagem de erro do servidor em produção, se o db.php falhar
+    // *** TRATAMENTO DE ERRO CRÍTICO: Verifica se a conexão falhou ***
     if ($conn->connect_error) {
-        $message = "Erro de conexão com o banco de dados. Tente novamente mais tarde.";
+        // Se houver Erro 500, a falha é aqui. Exibe mensagem sem quebrar o script.
+        $message = "Erro de conexão com o banco de dados. Por favor, tente novamente mais tarde.";
     } else {
         // 1. Buscar o usuário pelo email
         $stmt = $conn->prepare("SELECT id, name, password, role FROM users WHERE email = ?");
@@ -21,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($result->num_rows === 1) {
             $user = $result->fetch_assoc();
             
-            // 2. Verificar a senha (usando password_verify)
+            // 2. Verificar a senha (usando password_verify, pois a senha foi hasheada no cadastro)
             if (password_verify($password, $user['password'])) {
                 
                 // 3. Login bem-sucedido: Iniciar e salvar sessão
