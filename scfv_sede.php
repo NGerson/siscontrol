@@ -62,14 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet"> 
     
-    <style>
-        body {
-            /* ATENÇÃO: Mude este caminho para o local real da sua imagem */
-            background-image: url('img/background.jpg'); 
-        }
-    </style>
-</head>
-<body>
+    
+  </head>
+  <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm mb-5">
         <div class="container">
             <a class="navbar-brand" href="units.php">

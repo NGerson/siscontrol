@@ -14,30 +14,15 @@ $units = [
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Seleção de Unidade</title>
-    <link rel="icon" type="image/png" href="img/control2.1.png"> 
+     <meta charset="UTF-8">
+     <title>Seleção de Unidade</title>
+      <link rel="icon" type="image/png" href="img/control2.1.png"> 
     
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/style.css" rel="stylesheet"> 
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+       <link href="/css/style.css" rel="stylesheet"> 
     
-    <style>
-        body {
-            /* ATENÇÃO: Mude este caminho para o local real da sua imagem */
-            background-image: url('img/background.jpg'); 
-        }
-        .unit-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            border-left: 5px solid var(--primary-color);
-        }
-        .unit-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-    </style>
-</head>
-<body>
+    </head>
+    <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm mb-5">
         <div class="container">
             <a class="navbar-brand" href="units.php">

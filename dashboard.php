@@ -58,8 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
     <link href="/css/style.css" rel="stylesheet"> 
     
  
-</head>
-<body>
+ </head>
+ <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm mb-5">
         <div class="container">
             <a class="navbar-brand" href="dashboard.php">

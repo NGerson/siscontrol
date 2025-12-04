@@ -55,21 +55,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Controle de Estoque - <?php echo $unit_name; ?></title>
-    <link rel="icon" type="image/png" href="img/control2.1.png"> 
+       <meta charset="UTF-8">
+       <title>Controle de Estoque - <?php echo $unit_name; ?></title>
+       <link rel="icon" type="image/png" href="img/control2.1.png"> 
     
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/style.css" rel="stylesheet"> 
-    
-    <style>
-        body {
-            /* ATENÇÃO: Mude este caminho para o local real da sua imagem */
-            background-image: url('img/background.jpg'); 
-        }
-    </style>
-</head>
-<body>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+      <link href="/css/style.css" rel="stylesheet"> 
+      
+  </head>
+  <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm mb-5">
         <div class="container">
             <a class="navbar-brand" href="units.php">
